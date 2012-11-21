@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/tx
+		   http://www.springframework.org/schema/tx/spring-tx.xsd
+		   http://www.springframework.org/schema/jee 
+		   http://www.springframework.org/schema/jee/spring-jee.xsd">
+
+	<bean class="org.springframework.orm.jpa.JpaTransactionManager"
+		id="transactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+		<property name="jpaDialect">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+		</property>
+	</bean>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="generateDdl" value="true" />
+				<property name="database" value="POSTGRESQL" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="entityManager" class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+	   <property name="entityManagerFactory" ref="entityManagerFactory"/>
+	</bean>
+
+	<jee:jndi-lookup jndi-name="java:comp/env/jdbc/postgresqldb"
+		id="dataSource" expected-type="javax.sql.DataSource" />
+
+
+</beans>
