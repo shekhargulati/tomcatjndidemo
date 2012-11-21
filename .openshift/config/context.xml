@@ -31,5 +31,7 @@
     <!--
     <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
     -->
+    
+    <ResourceLink name="jdbc/postgresqldb" global="jdbc/postgresqldb" type="javax.sql.DataSource"/>
 
 </Context>
