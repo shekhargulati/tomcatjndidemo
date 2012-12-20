@@ -12,6 +12,3 @@
 # prevent your application from stopping cleanly or starting at all.
 # Application start and stop is subject to different timeouts
 # throughout the system.
-set -x
-cd $HOME/jbossews-1.0/jbossews-1.0
-sed -i 's@OPENSHIFT_DATA_DIR@'$OPENSHIFT_DATA_DIR'@' conf/catalina.properties 
