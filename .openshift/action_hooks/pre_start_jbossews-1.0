@@ -15,4 +15,4 @@
 
 set -x
 cd $HOME/jbossews-1.0/jbossews-1.0
-sed -ig 's/OPENSHIFT_DATA_DIR/'$OPENSHIFT_DATA_DIR'/g' conf/catalina.properties
+sed -i 's@OPENSHIFT_DATA_DIR@'$OPENSHIFT_DATA_DIR'@' conf/catalina.properties 
